@@ -170,3 +170,86 @@ data2 <-data.frame(tire, compound, wear)
 data2
 ```
 
+### a
+
+```{r}
+model2 <- aov(wear~tire+compound, data = data2)
+summary(model2)
+```
+
+$H_o : \mu_a = \mu_b = \mu_c = \mu_d$\
+$H_a :$ at least one $\mu_i \neq \mu_j$ for $i \neq j$\
+
+We have to test if $F_{obs} \geq F_{crit}$ to reject the null hypothesis.\
+$P(F_{df_{tr}, df_{E}} \geq F_{obs} )$\
+Our $\alpha = 0.05$ and having that this is larger than our p-value (0.00335), we reject the null hypothesis, and have strong evidence to conclude that at least one of the means is different, therefore, the compound used to make the tire have an effect on the wear of the tire.
+
+### b
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+
+data2 |>
+  filter(compound == "A") |>
+  pull(wear)|>
+  t.test()
+
+```
+
+The 95% confidence interval for the mean wear for compound A is (154.92, 303.75)
+
+### c
+
+```{r}
+#| warning: false
+TukeyHSD(model2)
+plot(TukeyHSD(model2))
+plot(model2$fitted, model2$residuals)
+```
+
+Base on the 95% family-wise confidence interval using Tukey's HSD coefficient, the only two comparisons that are not significantly different are between compound A and B, and compounds C and D. All the other pair-wise comparisons are significantly different.
+
+```{r}
+y_hat <- data2 |>
+  group_by(compound) |>
+  summarise(mean = mean(wear))
+y_hat <- data.frame(y_hat)
+y_hat
+data2|>
+  group_by(tire) |>
+  summarise(sum = sum(wear))
+Ba <- 755 + 717 + 955
+Bb <- 755 + 717 + 1145
+Bc <- 755 + 955 + 1145
+Bd <- 717 + 955 + 1145
+
+B_comp <- factor(c("A", "B", "C", "D")) 
+Total <- c(Ba, Bb, Bc, Bd)
+Bt <- data.frame(B_comp, Total)
+Bt
+k <- 3
+y_dot <- data2 |>
+  group_by(compound) |>
+  summarise(sum = sum(wear))
+y_dot <- data.frame(y_dot)
+y_dot
+
+kyB = k*y_dot$sum - Bt$Total
+kyB <- c(kyB)
+kydf <- data.frame(B_comp, kyB)
+kydf
+t <- 4
+r <- 3
+lmd <- r*(k-1)/(t-1)
+lmd
+y_grand <- mean(y_hat$mean)
+mu_hat <- y_grand + (kydf$kyB / (t * lmd))
+Est_tmean <- data.frame(B_comp, y_hat$mean, kyB, mu_hat)
+Est_tmean
+MSE<- 350
+W <- (qtukey(0.05, t, 5) / sqrt(2)) * sqrt ((2 * k * MSE)/(t * lmd))
+W
+```
+

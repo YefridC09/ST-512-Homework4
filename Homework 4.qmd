@@ -135,3 +135,38 @@ data1<-data.frame(day, operator, kelvin)
 data1
 ```
 
+### a
+
+For this randomized incomplete block design it is recognize that there are 4 days ($b = 4$ blocks), and 3 operators for each day from a total of 4 operators ($a = 4$ treatments). A suitable model for this experiment is shown below:
+
+$y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}$
+
+Where:
+
+$i = 1, 2, 3, 4$ number of treatments\
+$j = 1, 2, 3, 4$ number of blocks\
+$y_{ij} =$ the observation in the $j^{th}$ block receiving the $i^{th}$ treatment\
+$\mu =$ overall mean\
+$\alpha_i =$ the effect of the $i^{th}$ treatment.\
+$\beta_j =$ the effect of the $j^{th}$ block.\
+$\epsilon_{ij} =$ random error $\sim N(0, \sigma^2)$
+
+### b
+
+```{r}
+model1 <- lm(kelvin~day+operator, data = data1)
+anova(model1)
+```
+
+Based on the P-value for the treatment effect, as it is larger than $\alpha = 0.05$, we have weak evidence to conclude that the operator has an effect in the screen color difference. 
+
+## Problem 4
+
+```{r}
+tire <- factor(rep(1:4, each = 3)) 
+compound <- factor(c("A", "B", "C", "A", "B", "D", "A", "C", "D", "B", "C", "D")) 
+wear <- c(238, 238, 279, 196, 213, 308, 254, 334, 367, 312, 421, 412)
+data2 <-data.frame(tire, compound, wear)
+data2
+```
+

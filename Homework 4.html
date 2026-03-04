@@ -372,6 +372,63 @@ C-B -5.6 -9.9710493 -1.228951 0.0156770</code></pre>
 12  Thursday        D    820</code></pre>
 </div>
 </div>
+<section id="a-2" class="level3">
+<h3 class="anchored" data-anchor-id="a-2">a</h3>
+<p>For this randomized incomplete block design it is recognize that there are 4 days (<span class="math inline">\(b = 4\)</span> blocks), and 3 operators for each day from a total of 4 operators (<span class="math inline">\(a = 4\)</span> treatments). A suitable model for this experiment is shown below:</p>
+<p><span class="math inline">\(y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}\)</span></p>
+<p>Where:</p>
+<p><span class="math inline">\(i = 1, 2, 3, 4\)</span> number of treatments<br>
+<span class="math inline">\(j = 1, 2, 3, 4\)</span> number of blocks<br>
+<span class="math inline">\(y_{ij} =\)</span> the observation in the <span class="math inline">\(j^{th}\)</span> block receiving the <span class="math inline">\(i^{th}\)</span> treatment<br>
+<span class="math inline">\(\mu =\)</span> overall mean<br>
+<span class="math inline">\(\alpha_i =\)</span> the effect of the <span class="math inline">\(i^{th}\)</span> treatment.<br>
+<span class="math inline">\(\beta_j =\)</span> the effect of the <span class="math inline">\(j^{th}\)</span> block.<br>
+<span class="math inline">\(\epsilon_{ij} =\)</span> random error <span class="math inline">\(\sim N(0, \sigma^2)\)</span></p>
+</section>
+<section id="b-2" class="level3">
+<h3 class="anchored" data-anchor-id="b-2">b</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(kelvin<span class="sc">~</span>day<span class="sc">+</span>operator, <span class="at">data =</span> data1)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: kelvin
+          Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+day        3  34292 11430.6 11.3737 0.01134 *
+operator   3    508   169.4  0.1686 0.91315  
+Residuals  5   5025  1005.0                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Based on the P-value for the treatment effect, as it is larger than <span class="math inline">\(\alpha = 0.05\)</span>, we have weak evidence to conclude that the operator has an effect in the screen color difference.</p>
+</section>
+</section>
+<section id="problem-4" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4">Problem 4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tire <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">3</span>)) </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>compound <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>)) </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>wear <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">238</span>, <span class="dv">238</span>, <span class="dv">279</span>, <span class="dv">196</span>, <span class="dv">213</span>, <span class="dv">308</span>, <span class="dv">254</span>, <span class="dv">334</span>, <span class="dv">367</span>, <span class="dv">312</span>, <span class="dv">421</span>, <span class="dv">412</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span><span class="fu">data.frame</span>(tire, compound, wear)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   tire compound wear
+1     1        A  238
+2     1        B  238
+3     1        C  279
+4     2        A  196
+5     2        B  213
+6     2        D  308
+7     3        A  254
+8     3        C  334
+9     3        D  367
+10    4        B  312
+11    4        C  421
+12    4        D  412</code></pre>
+</div>
+</div>
 </section>
 
 </main>

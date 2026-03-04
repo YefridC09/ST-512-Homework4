@@ -6,12 +6,12 @@ author: Yefrid Cordoba
 
 ## Problem 1
 
-| Source    | DF  | SS      | MS     | F     | P         |
-|-----------|-----|---------|--------|-------|-----------|
-| Treatment | 4   | 1010.56 | 252.64 | 29.84 | 3.545e-08 |
-| Block     | 5   | 323.375 | 64.765 | 7.639 | 3.72e-04  |
-| Error     | 20  | 169.33  | 8.467  |       |           |
-| Total     | 29  | 1503.71 |        |       |           |
+| Source | DF | SS | MS | F | P |
+|----|----|----|----|----|----|
+| Treatment | 4 | 1010.56 | [252.64]{.underline} | 29.84 | [3.545e-08]{.underline} |
+| Block | [5]{.underline} | [323.375]{.underline} | 64.765 | [7.639]{.underline} | [3.72e-04]{.underline} |
+| Error | 20 | 169.33 | [8.467]{.underline} |  |  |
+| Total | 29 | 1503.71 |  |  |  |
 
 ### a
 
@@ -37,12 +37,13 @@ p_b <- pf(Fb, dfb, dfE, lower.tail = F)
 p_b
 ```
 
-### b 
+### b
 
 ```{r}
 b <- dfb + 1
 b
 ```
+
 There were used `6` blocks in this experiment.
 
 ### c
@@ -61,4 +62,76 @@ $\epsilon_{ij} =$ random error $\sim N(0, \sigma^2)$
 
 ### d
 
-Based on the P-values for the treatment and the 
+Based on the P-values for the treatment and assuming that the $\alpha = 0.05 >> 3.545e-08$, It can be concluded that the treatments are statistically significant, and have influence on the response variable of the block experiment performed.
+
+## Problem 2
+
+```{r}
+batch <- factor(rep(1:5, each = 3))
+treatment <- factor(rep(c("A", "B", "C"), times = 5)) 
+strength <- c(52, 60, 56, 47, 55, 48, 44, 49, 45, 51, 52, 44, 42, 43, 38) 
+data <- data.frame(batch, treatment, strength)
+```
+
+### a
+
+For this randomized complete block design it is recognize that there are 3 drying processes ($a = 3$ treatments), and 5 batches ($b = 5$ blocks). A suitable model for this experiment is shown below:
+
+$y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}$
+
+Where:
+
+$i = 1, 2, 3$ number of treatments\
+$j = 1, 2, 3, 4, 5$ number of blocks\
+$y_{ij} =$ the observation in the $j^{th}$ block receiving the $i^{th}$ treatment\
+$\mu =$ overall mean\
+$\alpha_i =$ the effect of the $i^{th}$ treatment. $\sum_{i=1}^n \alpha_i = 0$\
+$\beta_j =$ the effect of the $j^{th}$ block. $\sum_{i=1}^n \beta_i = 0$\
+$\epsilon_{ij} =$ random error $\sim N(0, \sigma^2)$
+
+### b
+
+To evaluate the if there is a statistical difference between the treatments, it is necessary to produce an ANOVA table including the blocks and analyze the p-value of the treatment
+
+```{r}
+model <- aov(strength~treatment+batch, data = data)
+
+summary(model)
+```
+
+Based on the p-value(0.014) that is smaller that our assumed $\alpha = 0.05$, we have strong evidence to conclude that at least one of the treatment's mean strength is different than the others.
+
+### c
+
+```{r}
+TukeyHSD(model, "treatment")
+```
+
+Based on the Tukey's HSD comparisson, treatment B differs from treatment A and B. Treatment C does not differ from treatment A, considering that the range that is evaluated is not including 0, and the $p_{adj}-value$ is lower than our $\alpha = 0.05$ for the intervals that are statistically different.
+
+### d
+
+```{r}
+plot(model, which = 1)
+```
+
+The residuals vs fitted plot, shows that based on the random position of all the data across the the graph, we can conclude that the data meet the equal variance assumption(not funnel shape). Also as the data does not follow a curved pattern, we can conclude that there is not presence of a non-linear relationship in the data.
+
+### e
+
+```{r}
+plot(model, which = 2)
+```
+
+The normal Q-Q plot shows that the data follows a linear trend that is close to the theoretical normal distributed residuals, therefore, we can assume that the samples are from a normally distributed population.
+
+## Problem 3 
+
+```{r}
+day <- factor(rep(c("Monday", "Tuesday", "Wednesday", "Thursday"), each = 3)) 
+operator <- factor(c("A", "B", "C", "A", "C", "D", "B", "C", "D", "A", "B", "D")) 
+kelvin <- c(780, 820, 800, 950, 920, 940, 880, 880, 820, 840, 780, 820) 
+data1<-data.frame(day, operator, kelvin)
+data1
+```
+

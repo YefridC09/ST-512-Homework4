@@ -135,6 +135,14 @@ window.Quarto = {
 <section id="problem-1" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1">Problem 1</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Source</th>
@@ -150,23 +158,23 @@ window.Quarto = {
 <td>Treatment</td>
 <td>4</td>
 <td>1010.56</td>
-<td>252.64</td>
+<td><u>252.64</u></td>
 <td>29.84</td>
-<td>3.545e-08</td>
+<td><u>3.545e-08</u></td>
 </tr>
 <tr class="even">
 <td>Block</td>
-<td>5</td>
-<td>323.375</td>
+<td><u>5</u></td>
+<td><u>323.375</u></td>
 <td>64.765</td>
-<td>7.639</td>
-<td>3.72e-04</td>
+<td><u>7.639</u></td>
+<td><u>3.72e-04</u></td>
 </tr>
 <tr class="odd">
 <td>Error</td>
 <td>20</td>
 <td>169.33</td>
-<td>8.467</td>
+<td><u>8.467</u></td>
 <td></td>
 <td></td>
 </tr>
@@ -250,8 +258,120 @@ window.Quarto = {
 </section>
 <section id="d" class="level3">
 <h3 class="anchored" data-anchor-id="d">d</h3>
-<p>Based on the P-values for the treatment and the</p>
+<p>Based on the P-values for the treatment and assuming that the <span class="math inline">\(\alpha = 0.05 &gt;&gt; 3.545e-08\)</span>, It can be concluded that the treatments are statistically significant, and have influence on the response variable of the block experiment performed.</p>
 </section>
+</section>
+<section id="problem-2" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">3</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">5</span>)) </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>strength <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">60</span>, <span class="dv">56</span>, <span class="dv">47</span>, <span class="dv">55</span>, <span class="dv">48</span>, <span class="dv">44</span>, <span class="dv">49</span>, <span class="dv">45</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">44</span>, <span class="dv">42</span>, <span class="dv">43</span>, <span class="dv">38</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(batch, treatment, strength)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="a-1" class="level3">
+<h3 class="anchored" data-anchor-id="a-1">a</h3>
+<p>For this randomized complete block design it is recognize that there are 3 drying processes (<span class="math inline">\(a = 3\)</span> treatments), and 5 batches (<span class="math inline">\(b = 5\)</span> blocks). A suitable model for this experiment is shown below:</p>
+<p><span class="math inline">\(y_{ij} = \mu + \alpha_i + \beta_j + \epsilon_{ij}\)</span></p>
+<p>Where:</p>
+<p><span class="math inline">\(i = 1, 2, 3\)</span> number of treatments<br>
+<span class="math inline">\(j = 1, 2, 3, 4, 5\)</span> number of blocks<br>
+<span class="math inline">\(y_{ij} =\)</span> the observation in the <span class="math inline">\(j^{th}\)</span> block receiving the <span class="math inline">\(i^{th}\)</span> treatment<br>
+<span class="math inline">\(\mu =\)</span> overall mean<br>
+<span class="math inline">\(\alpha_i =\)</span> the effect of the <span class="math inline">\(i^{th}\)</span> treatment. <span class="math inline">\(\sum_{i=1}^n \alpha_i = 0\)</span><br>
+<span class="math inline">\(\beta_j =\)</span> the effect of the <span class="math inline">\(j^{th}\)</span> block. <span class="math inline">\(\sum_{i=1}^n \beta_i = 0\)</span><br>
+<span class="math inline">\(\epsilon_{ij} =\)</span> random error <span class="math inline">\(\sim N(0, \sigma^2)\)</span></p>
+</section>
+<section id="b-1" class="level3">
+<h3 class="anchored" data-anchor-id="b-1">b</h3>
+<p>To evaluate the if there is a statistical difference between the treatments, it is necessary to produce an ANOVA table including the blocks and analyze the p-value of the treatment</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(strength<span class="sc">~</span>treatment<span class="sc">+</span>batch, <span class="at">data =</span> data)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+treatment    2   89.2   44.60   7.624 0.014023 *  
+batch        4  363.6   90.90  15.538 0.000768 ***
+Residuals    8   46.8    5.85                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Based on the p-value(0.014) that is smaller that our assumed <span class="math inline">\(\alpha = 0.05\)</span>, we have strong evidence to conclude that at least one of the treatment’s mean strength is different than the others.</p>
+</section>
+<section id="c-1" class="level3">
+<h3 class="anchored" data-anchor-id="c-1">c</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(model, <span class="st">"treatment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = strength ~ treatment + batch, data = data)
+
+$treatment
+    diff        lwr       upr     p adj
+B-A  4.6  0.2289507  8.971049 0.0401444
+C-A -1.0 -5.3710493  3.371049 0.7955695
+C-B -5.6 -9.9710493 -1.228951 0.0156770</code></pre>
+</div>
+</div>
+<p>Based on the Tukey’s HSD comparisson, treatment B differs from treatment A and B. Treatment C does not differ from treatment A, considering that the range that is evaluated is not including 0, and the <span class="math inline">\(p_{adj}-value\)</span> is lower than our <span class="math inline">\(\alpha = 0.05\)</span> for the intervals that are statistically different.</p>
+</section>
+<section id="d-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-1">d</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Homework-4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The residuals vs fitted plot, shows that based on the random position of all the data across the the graph, we can conclude that the data meet the equal variance assumption(not funnel shape). Also as the data does not follow a curved pattern, we can conclude that there is not presence of a non-linear relationship in the data.</p>
+</section>
+<section id="e" class="level3">
+<h3 class="anchored" data-anchor-id="e">e</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Homework-4_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The normal Q-Q plot shows that the data follows a linear trend that is close to the theoretical normal distributed residuals, therefore, we can assume that the samples are from a normally distributed population.</p>
+</section>
+</section>
+<section id="problem-3" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>day <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>), <span class="at">each =</span> <span class="dv">3</span>)) </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>operator <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>)) </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>kelvin <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">780</span>, <span class="dv">820</span>, <span class="dv">800</span>, <span class="dv">950</span>, <span class="dv">920</span>, <span class="dv">940</span>, <span class="dv">880</span>, <span class="dv">880</span>, <span class="dv">820</span>, <span class="dv">840</span>, <span class="dv">780</span>, <span class="dv">820</span>) </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>data1<span class="ot">&lt;-</span><span class="fu">data.frame</span>(day, operator, kelvin)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         day operator kelvin
+1     Monday        A    780
+2     Monday        B    820
+3     Monday        C    800
+4    Tuesday        A    950
+5    Tuesday        C    920
+6    Tuesday        D    940
+7  Wednesday        B    880
+8  Wednesday        C    880
+9  Wednesday        D    820
+10  Thursday        A    840
+11  Thursday        B    780
+12  Thursday        D    820</code></pre>
+</div>
+</div>
 </section>
 
 </main>

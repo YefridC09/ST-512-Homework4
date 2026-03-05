@@ -1,6 +1,6 @@
 ---
 title: "Homework #4"
-format: html
+format: pdf
 author: Yefrid Cordoba
 ---
 
@@ -206,7 +206,6 @@ The 95% confidence interval for the mean wear for compound A is (154.92, 303.75)
 #| warning: false
 TukeyHSD(model2)
 plot(TukeyHSD(model2))
-plot(model2$fitted, model2$residuals)
 ```
 
 Base on the 95% family-wise confidence interval using Tukey's HSD coefficient, the only two comparisons that are not significantly different are between compound A and B, and compounds C and D. All the other pair-wise comparisons are significantly different.
@@ -250,27 +249,6 @@ mu_hat <- y_grand + (kydf$kyB / (t * lmd))
 Est_tmean <- data.frame(B_comp, y_hat$mean, kyB, mu_hat)
 Est_tmean
 MSE<- 350
-W <- (qtukey(0.05, t, 5) / sqrt(2)) * sqrt ((2 * k * MSE)/(t * lmd))
+W <- (qtukey(0.95, t, 5) / sqrt(2)) * sqrt ((2 * k * MSE)/(t * lmd))
 W
 ```
-
-```{r}
-#| message: false
-#| warning: false
-library(agricolae)
-
-# Balanced incomplete block analysis + Tukey group letters
-bib_out <- BIB.test(block = data2$tire,
-                    trt   = data2$compound,
-                    y     = data2$wear,
-                    test  = "tukey",    # Tukey HSD on LS means
-                    alpha = 0.05,
-                    group = TRUE,
-                    console = TRUE)
-
-# Least-squares means and letters
-bib_out$means     # LS means etc.
-bib_out$groups    # letters like a, ab, bc, ...
-
-```
-

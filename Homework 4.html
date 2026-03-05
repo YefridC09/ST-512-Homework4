@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="Homework 4_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Homework 4_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Homework 4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Homework 4_files/libs/bootstrap/bootstrap-00b89fee0a844e7981cdfbc55183e926.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Homework 4_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -518,22 +518,14 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2<span class="sc">$</span>fitted, model2<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Homework-4_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 <p>Base on the 95% family-wise confidence interval using Tukey’s HSD coefficient, the only two comparisons that are not significantly different are between compound A and B, and compounds C and D. All the other pair-wise comparisons are significantly different.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> data2 <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compound) <span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(wear))</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_hat)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>y_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> data2 <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compound) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(wear))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_hat)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>y_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  compound     mean
 1        A 229.3333
@@ -541,9 +533,9 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3        C 344.6667
 4        D 362.3333</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tire) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(wear))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data2<span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tire) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(wear))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   tire    sum
@@ -553,15 +545,15 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3 3       955
 4 4      1145</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Ba <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">955</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>Bb <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">1145</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>Bc <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">955</span> <span class="sc">+</span> <span class="dv">1145</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>Bd <span class="ot">&lt;-</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">955</span> <span class="sc">+</span> <span class="dv">1145</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>B_comp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>)) </span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>Total <span class="ot">&lt;-</span> <span class="fu">c</span>(Ba, Bb, Bc, Bd)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>Bt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, Total)</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>Bt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>Ba <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">955</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>Bb <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">1145</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>Bc <span class="ot">&lt;-</span> <span class="dv">755</span> <span class="sc">+</span> <span class="dv">955</span> <span class="sc">+</span> <span class="dv">1145</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>Bd <span class="ot">&lt;-</span> <span class="dv">717</span> <span class="sc">+</span> <span class="dv">955</span> <span class="sc">+</span> <span class="dv">1145</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>B_comp <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>)) </span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>Total <span class="ot">&lt;-</span> <span class="fu">c</span>(Ba, Bb, Bc, Bd)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>Bt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, Total)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>Bt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  B_comp Total
 1      A  2427
@@ -569,12 +561,12 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3      C  2855
 4      D  2817</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>y_dot <span class="ot">&lt;-</span> data2 <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compound) <span class="sc">|&gt;</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(wear))</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>y_dot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_dot)</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>y_dot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>y_dot <span class="ot">&lt;-</span> data2 <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compound) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(wear))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>y_dot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(y_dot)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>y_dot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  compound  sum
 1        A  688
@@ -582,10 +574,10 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3        C 1034
 4        D 1087</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>kyB <span class="ot">=</span> k<span class="sc">*</span>y_dot<span class="sc">$</span>sum <span class="sc">-</span> Bt<span class="sc">$</span>Total</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>kyB <span class="ot">&lt;-</span> <span class="fu">c</span>(kyB)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>kydf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, kyB)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>kydf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>kyB <span class="ot">=</span> k<span class="sc">*</span>y_dot<span class="sc">$</span>sum <span class="sc">-</span> Bt<span class="sc">$</span>Total</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>kyB <span class="ot">&lt;-</span> <span class="fu">c</span>(kyB)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>kydf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, kyB)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>kydf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  B_comp  kyB
 1      A -363
@@ -593,21 +585,21 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3      C  247
 4      D  444</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>lmd <span class="ot">&lt;-</span> r<span class="sc">*</span>(k<span class="dv">-1</span>)<span class="sc">/</span>(t<span class="dv">-1</span>)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>lmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>lmd <span class="ot">&lt;-</span> r<span class="sc">*</span>(k<span class="dv">-1</span>)<span class="sc">/</span>(t<span class="dv">-1</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>lmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>y_grand <span class="ot">&lt;-</span> <span class="fu">mean</span>(y_hat<span class="sc">$</span>mean)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>y_grand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>y_grand <span class="ot">&lt;-</span> <span class="fu">mean</span>(y_hat<span class="sc">$</span>mean)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>y_grand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 297.6667</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> y_grand <span class="sc">+</span> (kydf<span class="sc">$</span>kyB <span class="sc">/</span> (t <span class="sc">*</span> lmd))</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>Est_tmean <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, y_hat<span class="sc">$</span>mean, kyB, mu_hat)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>Est_tmean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>mu_hat <span class="ot">&lt;-</span> y_grand <span class="sc">+</span> (kydf<span class="sc">$</span>kyB <span class="sc">/</span> (t <span class="sc">*</span> lmd))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>Est_tmean <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(B_comp, y_hat<span class="sc">$</span>mean, kyB, mu_hat)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>Est_tmean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  B_comp y_hat.mean  kyB   mu_hat
 1      A   229.3333 -363 252.2917
@@ -615,103 +607,11 @@ D-C 21.888889 -34.490222  78.2680 0.5334006</code></pre>
 3      C   344.6667  247 328.5417
 4      D   362.3333  444 353.1667</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>MSE<span class="ot">&lt;-</span> <span class="dv">350</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> (<span class="fu">qtukey</span>(<span class="fl">0.05</span>, t, <span class="dv">5</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span> ((<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">*</span> MSE)<span class="sc">/</span>(t <span class="sc">*</span> lmd))</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>MSE<span class="ot">&lt;-</span> <span class="dv">350</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> (<span class="fu">qtukey</span>(<span class="fl">0.95</span>, t, <span class="dv">5</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)) <span class="sc">*</span> <span class="fu">sqrt</span> ((<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">*</span> MSE)<span class="sc">/</span>(t <span class="sc">*</span> lmd))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 8.466013</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Balanced incomplete block analysis + Tukey group letters</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>bib_out <span class="ot">&lt;-</span> <span class="fu">BIB.test</span>(<span class="at">block =</span> data2<span class="sc">$</span>tire,</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trt   =</span> data2<span class="sc">$</span>compound,</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y     =</span> data2<span class="sc">$</span>wear,</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">test  =</span> <span class="st">"tukey"</span>,    <span class="co"># Tukey HSD on LS means</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">alpha =</span> <span class="fl">0.05</span>,</span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">console =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-ANALYSIS BIB:  data2$wear 
-Class level information
-
-Block:  1 2 3 4
-Trt  :  A B C D
-
-Number of observations:  12 
-
-Analysis of Variance Table
-
-Response: data2$wear
-            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-block.unadj  3  39123 13040.9  37.240 0.0007618 ***
-trt.adj      3  20729  6909.7  19.732 0.0033516 ** 
-Residuals    5   1751   350.2                      
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-coefficient of variation: 6.3 %
-data2$wear Means: 297.6667 
-
-data2$compound,  statistics
-
-  data2$wear mean.adj       SE r      std Min Max
-A   229.3333 252.2917 11.29916 3 29.95552 196 254
-B   254.3333 256.6667 11.29916 3 51.48139 213 312
-C   344.6667 328.5417 11.29916 3 71.59842 279 421
-D   362.3333 353.1667 11.29916 3 52.15681 308 412
-
-Tukey
-Alpha      : 0.05
-Std.err    : 11.45944
-HSD        : 59.79908
-Parameters BIB
-Lambda     : 2
-treatmeans : 4
-Block size : 3
-Blocks     : 4
-Replication: 3 
-
-Efficiency factor 0.8888889 
-
-&lt;&lt;&lt; Book &gt;&gt;&gt;
-
-Comparison between treatments means
-      Difference pvalue sig.
-A - B     -4.375 0.9923     
-A - C    -76.250 0.0195    *
-A - D   -100.875 0.0059   **
-B - C    -71.875 0.0248    *
-B - D    -96.500 0.0072   **
-C - D    -24.625 0.4915     
-
-Treatments with the same letter are not significantly different.
-
-  data2$wear groups
-D   353.1667      a
-C   328.5417      a
-B   256.6667      b
-A   252.2917      b</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Least-squares means and letters</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>bib_out<span class="sc">$</span>means     <span class="co"># LS means etc.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  data2$wear mean.adj       SE r      std Min Max   Q25 Q50   Q75
-A   229.3333 252.2917 11.29916 3 29.95552 196 254 217.0 238 246.0
-B   254.3333 256.6667 11.29916 3 51.48139 213 312 225.5 238 275.0
-C   344.6667 328.5417 11.29916 3 71.59842 279 421 306.5 334 377.5
-D   362.3333 353.1667 11.29916 3 52.15681 308 412 337.5 367 389.5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>bib_out<span class="sc">$</span>groups    <span class="co"># letters like a, ab, bc, ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  data2$wear groups
-D   353.1667      a
-C   328.5417      a
-B   256.6667      b
-A   252.2917      b</code></pre>
+<pre><code>[1] 59.78342</code></pre>
 </div>
 </div>
 </section>
